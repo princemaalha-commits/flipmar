@@ -1,719 +1,807 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ BlinkMinutes - Ultra-Fast Delivery & Seller Hub</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#090a0f',
-                        cardBg: '#13151f',
-                        cardHover: '#1c1f2e',
-                        neonYellow: '#facc15',
-                        neonCyan: '#22d3ee',
-                        neonPink: '#f43f5e'
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 4s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-6px)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #090a0f;
-            color: #f8fafc;
-            overflow-x: hidden;
-        }
-        /* Custom smooth scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #090a0f;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1e2235;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3b82f6;
-        }
-        .glass-panel {
-            background: rgba(19, 21, 31, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glow-effect {
-            box-shadow: 0 0 25px -5px rgba(34, 211, 238, 0.15);
-        }
-        .glow-yellow {
-            box-shadow: 0 0 25px -5px rgba(250, 204, 21, 0.2);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dribbble - Discover the World's Top Designers & Creative Work</title>
+  <meta name="description" content="Dribbble is the leading destination for designers to share, grow, and get hired. Explore millions of design shots and find your next inspiration." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23ea4c89'/%3E%3Cpath d='M16 1.5c5.4 4.9 8.2 12 8.2 19.7' stroke='white' stroke-width='1.7' fill='none' stroke-linecap='round'/%3E%3Cpath d='M4 11.6c6.5-2 13.3-.6 18.7 4' stroke='white' stroke-width='1.7' fill='none' stroke-linecap='round'/%3E%3Cpath d='M2.7 22.2c5.4-3.3 11.4-4.5 17.7-3.3 3.3.6 6.4 2 9.1 4.3' stroke='white' stroke-width='1.7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+  <!-- Tailwind CSS (Play CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dbpink: { DEFAULT: '#ea4c89', dark: '#c93b70', light: '#f7a7c6', wash: '#fdeef4' },
+            ink: '#0d0c22',
+            muted: '#6e6d7a',
+            faint: '#9e9ea7',
+            line: '#e7e7e9',
+            wash: '#f5f5f7',
+          },
+          fontFamily: { sans: ['Poppins', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'] },
+          keyframes: {
+            fadeUp: { '0%': { opacity: '0', transform: 'translateY(12px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+            pop: { '0%': { transform: 'scale(.85)' }, '100%': { transform: 'scale(1)' } },
+          },
+          animation: {
+            fadeUp: 'fadeUp .5s ease both',
+            pop: 'pop .2s ease both',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: #fff; color: #0d0c22; -webkit-font-smoothing: antialiased; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #fff; }
+    ::-webkit-scrollbar-thumb { background: #dcdce0; border-radius: 9999px; border: 2px solid #fff; }
+    ::-webkit-scrollbar-thumb:hover { background: #c1c1c8; }
+    .shadow-soft { box-shadow: 0 8px 30px rgba(13,12,34,.06); }
+    /* dropdown on hover + keyboard focus */
+    .dd-menu { visibility: hidden; opacity: 0; transform: translateY(6px); transition: all .18s ease; }
+    .dd:hover .dd-menu, .dd:focus-within .dd-menu { visibility: visible; opacity: 1; transform: translateY(0); }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-black">
 
-    <!-- Top Delivery Banner -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-white/10 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-            
-            <!-- Logo & Location Indicator -->
-            <div class="flex items-center gap-6">
-                <a href="#" onclick="switchTab('store')" class="flex items-center gap-2 group">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-400 to-cyan-400 flex items-center justify-center text-black font-black text-xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-                        ⚡
-                    </div>
-                    <div>
-                        <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-cyan-400 bg-clip-text text-transparent">BlinkMinutes</span>
-                        <span class="block text-[10px] text-cyan-400 font-semibold tracking-widest uppercase">Hyper-Local Quick Commerce</span>
-                    </div>
-                </a>
+<body class="min-h-screen flex flex-col antialiased">
 
-                <!-- Location / Timer Pill -->
-                <div class="hidden md:flex items-center gap-3 px-4 py-2 rounded-full bg-slate-900/80 border border-white/10 text-xs font-medium text-slate-300">
-                    <div class="flex items-center gap-1.5 text-yellow-400 font-bold">
-                        <i data-lucide="zap" class="w-4 h-4 fill-yellow-400 animate-pulse"></i>
-                        <span>11 MINS</span>
-                    </div>
-                    <div class="w-px h-3 bg-white/20"></div>
-                    <div class="flex items-center gap-1 text-slate-300">
-                        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cyan-400"></i>
-                        <span class="truncate max-w-[140px]">Surat, Gujarat</span>
-                    </div>
-                </div>
-            </div>
+  <!-- ============ PROMO BAR ============ -->
+  <div id="promoBar" class="bg-ink text-white text-[13px]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-11 flex items-center justify-center gap-3 relative">
+      <span class="hidden sm:inline-flex items-center gap-1.5 font-semibold text-dbpink-light">Hiring designers?</span>
+      <span>Post a job and reach 10M+ creatives.</span>
+      <a href="#hire" class="underline decoration-dbpink decoration-2 underline-offset-2 font-semibold hover:text-dbpink-light transition">Post a job →</a>
+      <button onclick="document.getElementById('promoBar').remove()" aria-label="Dismiss" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
 
-            <!-- Search Bar -->
-            <div class="flex-1 max-w-md hidden sm:block">
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                        <i data-lucide="search" class="w-4 h-4"></i>
-                    </span>
-                    <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Search 'Organic Milk', 'Chips', 'iPhone charger'..." 
-                        class="w-full pl-10 pr-4 py-2.5 rounded-full bg-slate-900/90 border border-white/10 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-                </div>
-            </div>
+  <!-- ============ HEADER / NAV ============ -->
+  <header id="siteHeader" class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-line/70 transition-shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="h-16 flex items-center gap-4">
 
-            <!-- Right Actions & Navigation Tabs -->
-            <div class="flex items-center gap-3">
-                <button onclick="switchTab('store')" id="navStoreBtn" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
-                    <i data-lucide="store" class="w-4 h-4"></i>
-                    <span>Storefront</span>
-                </button>
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2 shrink-0" aria-label="Dribbble home">
+          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="16" fill="#ea4c89"/>
+            <path d="M16 1.5c5.4 4.9 8.2 12 8.2 19.7" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M4 11.6c6.5-2 13.3-.6 18.7 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M2.7 22.2c5.4-3.3 11.4-4.5 17.7-3.3 3.3.6 6.4 2 9.1 4.3" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          <span class="text-[22px] font-extrabold tracking-tight text-ink hidden sm:inline">dribbble</span>
+        </a>
 
-                <button onclick="switchTab('seller')" id="navSellerBtn" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-slate-900/80 text-slate-300 border border-white/10 hover:border-white/20 hover:text-white">
-                    <i data-lucide="package-plus" class="w-4 h-4 text-yellow-400"></i>
-                    <span>Seller Portal</span>
-                </button>
-
-                <!-- Cart Button -->
-                <button onclick="toggleCartDrawer(true)" class="relative p-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black hover:opacity-90 transition-all font-bold flex items-center gap-2 shadow-lg shadow-cyan-500/20">
-                    <i data-lucide="shopping-bag" class="w-5 h-5 text-black"></i>
-                    <span id="cartCountBadge" class="absolute -top-1.5 -right-1.5 bg-yellow-400 text-black text-[11px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-slate-950 shadow">0</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-
-        <!-- STORE VIEW -->
-        <div id="storeView" class="space-y-8">
-            
-            <!-- Hero Promo Banner -->
-            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border border-white/10 p-6 sm:p-10 glow-effect">
-                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -left-10 -top-10 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                
-                <div class="relative z-10 max-w-2xl space-y-4">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 text-xs font-bold tracking-wide">
-                        <i data-lucide="zap" class="w-3.5 h-3.5"></i>
-                        <span>BLAZING FAST 11-MINUTE DELIVERY</span>
-                    </div>
-                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                        Groceries & Essentials at your door in <span class="bg-gradient-to-r from-yellow-400 to-cyan-400 bg-clip-text text-transparent">Minutes</span>.
-                    </h1>
-                    <p class="text-slate-400 text-sm sm:text-base">
-                        Experience the future of instant commerce. Fresh dairy, daily vegetables, electronics, and snacks delivered lightning fast.
-                    </p>
-                    <div class="flex flex-wrap gap-3 pt-2">
-                        <button onclick="filterCategory('All')" class="px-5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-sm hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/20">
-                            Shop Catalog Now
-                        </button>
-                        <button onclick="switchTab('seller')" class="px-5 py-2.5 rounded-xl bg-slate-800/80 text-white font-semibold text-sm border border-white/10 hover:bg-slate-800 transition-all">
-                            Are you a Seller? List Here →
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Categories Section -->
-            <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                    <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
-                        <i data-lucide="grid" class="w-5 h-5 text-cyan-400"></i>
-                        <span>Explore Categories</span>
-                    </h2>
-                    <span id="productCountLabel" class="text-xs text-slate-400 font-medium">Showing all items</span>
-                </div>
-
-                <div id="categoryContainer" class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
-                    <!-- Dynamically populated categories -->
-                </div>
-            </div>
-
-            <!-- Product Catalog Grid -->
-            <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                    <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
-                        <i data-lucide="shopping-bag" class="w-5 h-5 text-yellow-400"></i>
-                        <span>Instant Delivery Catalog</span>
-                    </h2>
-                </div>
-
-                <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-                    <!-- Dynamically populated products -->
-                </div>
-            </div>
-        </div>
-
-
-        <!-- SELLER PORTAL VIEW -->
-        <div id="sellerView" class="hidden space-y-8 max-w-4xl mx-auto">
-            
-            <div class="text-center space-y-3">
-                <div class="inline-flex p-3 rounded-2xl bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 mb-1">
-                    <i data-lucide="store" class="w-8 h-8"></i>
-                </div>
-                <h1 class="text-3xl font-extrabold text-white">Seller Hub & Instant Listing</h1>
-                <p class="text-slate-400 max-w-lg mx-auto text-sm">
-                    Add your product to the live BlinkMinutes catalog instantly. Reach thousands of customers in Surat with 11-minute delivery fulfillment.
-                </p>
-            </div>
-
-            <!-- Listing Form Card -->
-            <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 glow-yellow space-y-6">
-                <div class="border-b border-white/10 pb-4 flex items-center justify-between">
-                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
-                        <i data-lucide="plus-circle" class="w-5 h-5 text-yellow-400"></i>
-                        <span>Product Details Form</span>
-                    </h2>
-                    <span class="text-xs text-cyan-400 font-semibold bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">Live Sync Enabled</span>
-                </div>
-
-                <form id="sellerForm" onsubmit="handleProductListing(event)" class="space-y-5">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        
-                        <!-- Product Name -->
-                        <div class="space-y-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Product Name *</label>
-                            <input type="text" id="pName" required placeholder="e.g., Organic Fresh Avocados 500g" 
-                                class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-yellow-400 transition-all">
-                        </div>
-
-                        <!-- Category -->
-                        <div class="space-y-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Category *</label>
-                            <select id="pCategory" required class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-sm text-white focus:outline-none focus:border-yellow-400 transition-all">
-                                <option value="Groceries">Groceries & Dairy</option>
-                                <option value="Snacks">Snacks & Beverages</option>
-                                <option value="Electronics">Electronics & Chargers</option>
-                                <option value="Essentials">Daily Essentials</option>
-                                <option value="Fruits & Veg">Fruits & Vegetables</option>
-                            </select>
-                        </div>
-
-                        <!-- Price -->
-                        <div class="space-y-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Price (₹) *</label>
-                            <input type="number" id="pPrice" required min="1" placeholder="199" 
-                                class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-yellow-400 transition-all">
-                        </div>
-
-                        <!-- Original MRP -->
-                        <div class="space-y-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Original MRP (₹)</label>
-                            <input type="number" id="pMrp" min="1" placeholder="299" 
-                                class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-yellow-400 transition-all">
-                        </div>
-
-                        <!-- Delivery ETA -->
-                        <div class="space-y-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Delivery ETA</label>
-                            <input type="text" id="pEta" value="11 mins" placeholder="11 mins" 
-                                class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-yellow-400 transition-all">
-                        </div>
-
-                        <!-- Stock Units -->
-                        <div class="space-y-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Stock Quantity *</label>
-                            <input type="number" id="pStock" required min="1" value="50" 
-                                class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-yellow-400 transition-all">
-                        </div>
-                    </div>
-
-                    <!-- Image URL -->
-                    <div class="space-y-2">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Product Image URL *</label>
-                        <input type="url" id="pImage" required placeholder="https://images.unsplash.com/photo-..." 
-                            class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-yellow-400 transition-all">
-                        <p class="text-[11px] text-slate-500">Tip: You can use any high-res Unsplash image link or product photo URL.</p>
-                    </div>
-
-                    <!-- Quick Previews or Preset Buttons -->
-                    <div class="flex items-center gap-2 pt-1">
-                        <span class="text-xs text-slate-400 font-semibold">Quick Presets:</span>
-                        <button type="button" onclick="fillPreset('milk')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs text-cyan-400 border border-white/10 hover:bg-slate-700">Amul Milk</button>
-                        <button type="button" onclick="fillPreset('chips')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs text-yellow-400 border border-white/10 hover:bg-slate-700">Lays Chips</button>
-                        <button type="button" onclick="fillPreset('charger')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs text-pink-400 border border-white/10 hover:bg-slate-700">Fast Charger</button>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-yellow-400 to-amber-500 text-slate-950 font-extrabold text-base hover:opacity-90 transition-all shadow-xl shadow-yellow-500/20 flex items-center justify-center gap-2">
-                        <i data-lucide="upload-cloud" class="w-5 h-5"></i>
-                        <span>Publish Product Instantly to Catalog</span>
-                    </button>
-                </form>
-            </div>
-
-            <!-- Seller Listed Products Summary -->
-            <div class="glass-panel p-6 rounded-3xl border border-white/10 space-y-4">
-                <h3 class="font-bold text-white text-base flex items-center justify-between">
-                    <span class="flex items-center gap-2">
-                        <i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i>
-                        <span>Your Live Seller Inventory</span>
-                    </span>
-                    <span id="sellerItemCount" class="text-xs text-slate-400 bg-slate-900 px-3 py-1 rounded-full">0 Items Listed</span>
-                </h3>
-                <div id="sellerProductsList" class="divide-y divide-white/10 max-h-60 overflow-y-auto">
-                    <!-- Populated via JS -->
-                </div>
-            </div>
-
-        </div>
-
-    </main>
-
-    <div id="cartOverlay" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden transition-opacity opacity-0"></div>
-    
-    <div id="cartDrawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-[#0f111a] border-l border-white/10 p-6 flex flex-col transform translate-x-full transition-transform duration-300 shadow-2xl">
-        
-        <!-- Cart Header -->
-        <div class="flex items-center justify-between border-b border-white/10 pb-4">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-bold">
-                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                </div>
-                <div>
-                    <h2 class="font-bold text-white text-base">Your Quick Cart</h2>
-                    <p class="text-xs text-cyan-400 flex items-center gap-1">
-                        <i data-lucide="zap" class="w-3 h-3"></i> Delivery in 11 Mins
-                    </p>
-                </div>
-            </div>
-            <button onclick="toggleCartDrawer(false)" class="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white border border-white/10">
-                <i data-lucide="x" class="w-5 h-5"></i>
+        <!-- Desktop nav -->
+        <nav class="hidden lg:flex items-center gap-1 ml-2 text-sm font-medium text-ink">
+          <!-- Explore dropdown -->
+          <div class="dd relative">
+            <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-wash transition">
+              Explore
+              <svg class="w-4 h-4 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </button>
-        </div>
-
-        <!-- Cart Items List -->
-        <div id="cartItemsContainer" class="flex-1 overflow-y-auto py-4 space-y-3 divide-y divide-white/5">
-            <!-- Dynamically populated cart items -->
-        </div>
-
-        <!-- Cart Footer & Bill Summary -->
-        <div id="cartFooter" class="border-t border-white/10 pt-4 space-y-4">
-            <div class="space-y-2 text-sm bg-slate-900/60 p-4 rounded-2xl border border-white/5">
-                <div class="flex justify-between text-slate-400">
-                    <span>Items Total</span>
-                    <span id="cartSubtotal">₹0</span>
-                </div>
-                <div class="flex justify-between text-slate-400">
-                    <span>Instant Delivery Fee</span>
-                    <span class="text-cyan-400 font-semibold">FREE</span>
-                </div>
-                <div class="flex justify-between text-slate-400">
-                    <span>Handling & Packaging</span>
-                    <span>₹4</span>
-                </div>
-                <div class="pt-2 border-t border-white/10 flex justify-between text-white font-extrabold text-base">
-                    <span>Grand Total</span>
-                    <span id="cartGrandTotal" class="text-yellow-400">₹4</span>
-                </div>
+            <div class="dd-menu absolute left-0 top-full pt-2 w-56">
+              <div class="bg-white rounded-2xl shadow-soft ring-1 ring-line p-2">
+                <a href="#feed" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-wash transition"><span class="w-8 h-8 grid place-items-center rounded-lg bg-dbpink-wash text-dbpink">🔥</span><span><span class="block text-sm font-semibold">Popular</span><span class="block text-xs text-faint">Trending this week</span></span></a>
+                <a href="#feed" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-wash transition"><span class="w-8 h-8 grid place-items-center rounded-lg bg-dbpink-wash text-dbpink">✨</span><span><span class="block text-sm font-semibold">New &amp; Noteworthy</span><span class="block text-xs text-faint">Fresh finds</span></span></a>
+                <a href="#feed" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-wash transition"><span class="w-8 h-8 grid place-items-center rounded-lg bg-dbpink-wash text-dbpink">🏀</span><span><span class="block text-sm font-semibold">Playoffs</span><span class="block text-xs text-faint">Community challenges</span></span></a>
+                <a href="#feed" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-wash transition"><span class="w-8 h-8 grid place-items-center rounded-lg bg-dbpink-wash text-dbpink">🎙️</span><span><span class="block text-sm font-semibold">Podcasts</span><span class="block text-xs text-faint">Design conversations</span></span></a>
+              </div>
             </div>
+          </div>
 
-            <button onclick="checkoutOrder()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-extrabold text-base hover:opacity-90 transition-all shadow-xl shadow-cyan-500/20 flex items-center justify-center gap-2">
-                <span>Proceed to Checkout</span>
-                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          <!-- Hire dropdown -->
+          <div class="dd relative">
+            <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-wash transition">
+              Hire a Designer
+              <svg class="w-4 h-4 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </button>
+            <div class="dd-menu absolute left-0 top-full pt-2 w-64">
+              <div class="bg-white rounded-2xl shadow-soft ring-1 ring-line p-2">
+                <a href="#hire" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-wash transition"><span class="w-8 h-8 grid place-items-center rounded-lg bg-dbpink-wash text-dbpink">💼</span><span><span class="block text-sm font-semibold">Post a job</span><span class="block text-xs text-faint">Hire full-time talent</span></span></a>
+                <a href="#spotlights" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-wash transition"><span class="w-8 h-8 grid place-items-center rounded-lg bg-dbpink-wash text-dbpink">🔎</span><span><span class="block text-sm font-semibold">Browse designers</span><span class="block text-xs text-faint">Explore portfolios</span></span></a>
+                <a href="#hire" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-wash transition"><span class="w-8 h-8 grid place-items-center rounded-lg bg-dbpink-wash text-dbpink">⚡</span><span><span class="block text-sm font-semibold">Hire a freelancer</span><span class="block text-xs text-faint">Flexible project work</span></span></a>
+              </div>
+            </div>
+          </div>
+
+          <a href="#spotlights" class="px-3 py-2 rounded-lg hover:bg-wash transition">Find Talent</a>
+          <a href="#feed" class="px-3 py-2 rounded-lg hover:bg-wash transition">Inspiration</a>
+          <a href="#hire" class="px-3 py-2 rounded-lg hover:bg-wash transition flex items-center gap-1.5">Go Pro <span class="text-[10px] font-bold bg-dbpink-wash text-dbpink px-1.5 py-0.5 rounded">NEW</span></a>
+        </nav>
+
+        <!-- Search -->
+        <div class="flex-1 max-w-md hidden md:block ml-auto">
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-faint">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </span>
+            <input id="navSearch" type="text" placeholder="Search designers, shots, tags…"
+              class="w-full pl-9 pr-3 py-2 rounded-full bg-wash border border-transparent focus:border-dbpink/40 focus:bg-white text-sm placeholder-faint outline-none transition" />
+          </div>
         </div>
+
+        <!-- Auth -->
+        <div class="flex items-center gap-2 ml-auto md:ml-0">
+          <button onclick="openModal('signin')" class="hidden sm:inline-flex text-sm font-semibold px-3 py-2 rounded-lg hover:bg-wash transition">Sign in</button>
+          <button onclick="openModal('signup')" class="text-sm font-semibold px-4 py-2 rounded-lg bg-dbpink text-white hover:bg-dbpink-dark transition shadow-sm shadow-dbpink/30">Sign up</button>
+          <!-- Mobile menu button -->
+          <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg hover:bg-wash transition" aria-label="Menu">
+            <svg id="menuIcon" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3 rounded-2xl bg-slate-900 border border-cyan-500/40 text-white text-sm font-semibold shadow-2xl flex items-center gap-3 opacity-0 pointer-events-none transition-all duration-300">
-        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400"></i>
-        <span id="toastMsg">Action completed successfully</span>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="lg:hidden hidden border-t border-line bg-white">
+      <div class="px-4 py-4 space-y-1 text-sm font-medium">
+        <div class="relative mb-3">
+          <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-faint">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </span>
+          <input id="navSearchMobile" type="text" placeholder="Search…" class="w-full pl-9 pr-3 py-2 rounded-full bg-wash text-sm placeholder-faint outline-none" />
+        </div>
+        <a href="#feed" class="block px-3 py-2.5 rounded-lg hover:bg-wash">Explore</a>
+        <a href="#hire" class="block px-3 py-2.5 rounded-lg hover:bg-wash">Hire a Designer</a>
+        <a href="#spotlights" class="block px-3 py-2.5 rounded-lg hover:bg-wash">Find Talent</a>
+        <a href="#feed" class="block px-3 py-2.5 rounded-lg hover:bg-wash">Inspiration</a>
+        <a href="#hire" class="block px-3 py-2.5 rounded-lg hover:bg-wash">Go Pro</a>
+        <div class="pt-2 flex gap-2">
+          <button onclick="openModal('signin')" class="flex-1 py-2.5 rounded-lg border border-line font-semibold">Sign in</button>
+          <button onclick="openModal('signup')" class="flex-1 py-2.5 rounded-lg bg-dbpink text-white font-semibold">Sign up</button>
+        </div>
+      </div>
     </div>
+  </header>
 
-    <script>
-        // Initial Mock Products Database
-        let products = [
-            { id: 1, name: "Amul Taaza Fresh Milk 500ml", category: "Groceries", price: 28, mrp: 30, eta: "11 mins", stock: 120, image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=500&q=80" },
-            { id: 2, name: "Lay's Classic Salted Chips 50g", category: "Snacks", price: 20, mrp: 20, eta: "9 mins", stock: 85, image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=500&q=80" },
-            { id: 3, name: "Organic Fresh Bananas (6 pcs)", category: "Fruits & Veg", price: 45, mrp: 60, eta: "11 mins", stock: 40, image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500&q=80" },
-            { id: 4, name: "Type-C Fast Charging Cable 1m", category: "Electronics", price: 199, mrp: 499, eta: "14 mins", stock: 25, image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&q=80" },
-            { id: 5, name: "Colgate Strong Teeth Toothpaste", category: "Essentials", price: 95, mrp: 110, eta: "11 mins", stock: 60, image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&q=80" },
-            { id: 6, name: "Nescafe Classic Coffee Jar 50g", category: "Groceries", price: 165, mrp: 185, eta: "11 mins", stock: 35, image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&q=80" },
-            { id: 7, name: "Cadbury Dairy Milk Silk Chocolate", category: "Snacks", price: 175, mrp: 190, eta: "8 mins", stock: 90, image: "https://images.unsplash.com/photo-1548907040-4baa42d10919?w=500&q=80" },
-            { id: 8, name: "Tata Salt Vacuum Evaporated 1kg", category: "Groceries", price: 28, mrp: 30, eta: "11 mins", stock: 150, image: "https://images.unsplash.com/photo-1518112341071-35e1280f1218?w=500&q=80" }
-        ];
+  <main class="flex-1">
 
-        let categories = ["All", "Groceries", "Snacks", "Fruits & Veg", "Electronics", "Essentials"];
-        let activeCategory = "All";
-        let searchQuery = "";
-        let cart = {}; // productId -> quantity
+    <!-- ============ HERO ============ -->
+    <section class="relative overflow-hidden">
+      <!-- soft background glows -->
+      <div class="pointer-events-none absolute -top-24 -left-24 w-96 h-96 bg-dbpink/10 rounded-full blur-3xl"></div>
+      <div class="pointer-events-none absolute -top-16 right-0 w-96 h-96 bg-violet-400/10 rounded-full blur-3xl"></div>
 
-        // Initialize application on load
-        window.addEventListener('DOMContentLoaded', () => {
-            renderCategories();
-            renderProducts();
-            renderSellerProducts();
-            updateCartBadge();
-            lucide.createIcons();
+      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 pt-16 pb-12 text-center">
+        <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-dbpink bg-dbpink-wash px-3 py-1.5 rounded-full animate-fadeUp">
+          <span class="w-1.5 h-1.5 rounded-full bg-dbpink"></span> THE WORLD'S DESIGN COMMUNITY
+        </span>
+        <h1 class="mt-5 text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] text-ink animate-fadeUp">
+          Dribbble is where the world's<br class="hidden sm:block" />
+          <span class="text-dbpink">designers</span> share their work.
+        </h1>
+        <p class="mt-5 text-base sm:text-lg text-muted max-w-2xl mx-auto animate-fadeUp">
+          Explore millions of design shots, follow the creators you love, and discover inspiration for your next project.
+        </p>
+
+        <!-- Hero search -->
+        <div class="mt-8 max-w-xl mx-auto animate-fadeUp">
+          <div class="flex items-center gap-2 p-1.5 rounded-full bg-white ring-1 ring-line shadow-soft focus-within:ring-dbpink/40 transition">
+            <span class="pl-3 text-faint">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </span>
+            <input id="heroSearch" type="text" placeholder="Search for design inspiration…" class="flex-1 py-2.5 bg-transparent text-sm outline-none placeholder-faint" />
+            <button onclick="runHeroSearch()" class="px-5 py-2.5 rounded-full bg-dbpink text-white text-sm font-semibold hover:bg-dbpink-dark transition">Search</button>
+          </div>
+        </div>
+
+        <!-- Popular tags -->
+        <div class="mt-5 flex flex-wrap items-center justify-center gap-2 text-sm animate-fadeUp">
+          <span class="text-faint">Popular:</span>
+          <button onclick="searchTag('landing page')" class="px-3 py-1.5 rounded-full bg-wash hover:bg-dbpink-wash hover:text-dbpink text-muted transition">landing page</button>
+          <button onclick="searchTag('dashboard')" class="px-3 py-1.5 rounded-full bg-wash hover:bg-dbpink-wash hover:text-dbpink text-muted transition">dashboard</button>
+          <button onclick="searchTag('mobile app')" class="px-3 py-1.5 rounded-full bg-wash hover:bg-dbpink-wash hover:text-dbpink text-muted transition">mobile app</button>
+          <button onclick="searchTag('illustration')" class="px-3 py-1.5 rounded-full bg-wash hover:bg-dbpink-wash hover:text-dbpink text-muted transition">illustration</button>
+          <button onclick="searchTag('branding')" class="px-3 py-1.5 rounded-full bg-wash hover:bg-dbpink-wash hover:text-dbpink text-muted transition">branding</button>
+          <button onclick="searchTag('3d')" class="px-3 py-1.5 rounded-full bg-wash hover:bg-dbpink-wash hover:text-dbpink text-muted transition">3d</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEED ============ -->
+    <section id="feed" class="max-w-7xl mx-auto px-4 sm:px-6 pb-6">
+      <!-- Tabs -->
+      <div class="flex items-center justify-between gap-4 border-b border-line pb-3 mb-8">
+        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
+          <button data-tab="popular" class="tab-btn px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition">Popular</button>
+          <button data-tab="noteworthy" class="tab-btn px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition">New &amp; Noteworthy</button>
+          <button data-tab="fresh" class="tab-btn px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition">Fresh</button>
+        </div>
+        <div class="hidden sm:flex items-center gap-2 text-sm text-muted shrink-0">
+          <span id="resultCount"></span>
+        </div>
+      </div>
+
+      <!-- Active search indicator -->
+      <div id="searchIndicator" class="hidden mb-6 flex items-center gap-2 text-sm">
+        <span class="text-muted">Results for</span>
+        <span id="searchTerm" class="font-semibold text-ink"></span>
+        <button onclick="clearSearch()" class="inline-flex items-center gap-1 text-dbpink font-semibold hover:underline">
+          clear
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Masonry feed -->
+      <div id="shotGrid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6"></div>
+
+      <!-- Empty state -->
+      <div id="emptyState" class="hidden py-20 text-center">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-wash grid place-items-center text-faint mb-4">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-ink">No shots found</h3>
+        <p class="text-muted text-sm mt-1">Try a different keyword or browse what's popular.</p>
+        <button onclick="clearSearch()" class="mt-4 px-4 py-2 rounded-full bg-dbpink text-white text-sm font-semibold hover:bg-dbpink-dark transition">Reset search</button>
+      </div>
+
+      <!-- Load more -->
+      <div id="loadMoreWrap" class="flex justify-center mt-10">
+        <button onclick="loadMore()" class="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-line font-semibold text-sm text-ink hover:border-dbpink hover:text-dbpink transition">
+          Load more shots
+          <svg class="w-4 h-4 group-hover:translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ HIRE CTA ============ -->
+    <section id="hire" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+      <div class="relative overflow-hidden rounded-3xl bg-ink text-white px-6 sm:px-12 py-12 sm:py-16">
+        <div class="pointer-events-none absolute -right-16 -top-16 w-72 h-72 bg-dbpink/30 rounded-full blur-3xl"></div>
+        <div class="pointer-events-none absolute -left-10 -bottom-20 w-72 h-72 bg-violet-500/20 rounded-full blur-3xl"></div>
+
+        <div class="relative grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <span class="text-dbpink-light font-semibold text-sm">Need work done?</span>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">Find the perfect designer for your next project.</h2>
+            <p class="mt-4 text-white/70 max-w-md">From branding to product design, hire the world's best creative talent — full-time, freelance, or on demand.</p>
+            <div class="mt-7 flex flex-wrap gap-3">
+              <button onclick="openModal('signup')" class="px-6 py-3 rounded-full bg-dbpink text-white font-semibold hover:bg-dbpink-dark transition shadow-lg shadow-dbpink/30">Browse designers</button>
+              <button onclick="showToast('Job posting flow coming soon')" class="px-6 py-3 rounded-full bg-white/10 text-white font-semibold ring-1 ring-white/20 hover:bg-white/20 transition">Post a job</button>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4 lg:items-end">
+            <div class="flex -space-x-3">
+              <img src="https://i.pravatar.cc/80?img=12" onerror="av(this,'SR')" class="w-12 h-12 rounded-full ring-2 ring-ink" />
+              <img src="https://i.pravatar.cc/80?img=33" onerror="av(this,'KT')" class="w-12 h-12 rounded-full ring-2 ring-ink" />
+              <img src="https://i.pravatar.cc/80?img=5" onerror="av(this,'AO')" class="w-12 h-12 rounded-full ring-2 ring-ink" />
+              <img src="https://i.pravatar.cc/80?img=47" onerror="av(this,'LB')" class="w-12 h-12 rounded-full ring-2 ring-ink" />
+              <img src="https://i.pravatar.cc/80?img=20" onerror="av(this,'PN')" class="w-12 h-12 rounded-full ring-2 ring-ink" />
+              <span class="w-12 h-12 rounded-full ring-2 ring-ink bg-dbpink grid place-items-center text-sm font-bold">10M+</span>
+            </div>
+            <div class="grid grid-cols-3 gap-3 w-full max-w-sm">
+              <div class="bg-white/5 ring-1 ring-white/10 rounded-2xl p-4 text-center"><div class="text-2xl font-extrabold text-dbpink-light">10M+</div><div class="text-xs text-white/60 mt-1">Designers</div></div>
+              <div class="bg-white/5 ring-1 ring-white/10 rounded-2xl p-4 text-center"><div class="text-2xl font-extrabold text-dbpink-light">40M+</div><div class="text-xs text-white/60 mt-1">Shots</div></div>
+              <div class="bg-white/5 ring-1 ring-white/10 rounded-2xl p-4 text-center"><div class="text-2xl font-extrabold text-dbpink-light">150+</div><div class="text-xs text-white/60 mt-1">Countries</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DESIGNER SPOTLIGHTS ============ -->
+    <section id="spotlights" class="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-ink">Follow designers to inspire your feed</h2>
+          <p class="text-muted mt-1">Discover fresh creative voices from around the world.</p>
+        </div>
+        <div class="hidden sm:flex gap-2">
+          <button onclick="scrollRail(-1)" class="w-10 h-10 grid place-items-center rounded-full border border-line hover:border-dbpink hover:text-dbpink transition"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+          <button onclick="scrollRail(1)" class="w-10 h-10 grid place-items-center rounded-full border border-line hover:border-dbpink hover:text-dbpink transition"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+        </div>
+      </div>
+
+      <div id="designerRail" class="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-2"></div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-line bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6">
+        <div>
+          <h4 class="font-bold text-ink mb-3 text-sm">For designers</h4>
+          <ul class="space-y-2 text-sm text-muted">
+            <li><a href="#" class="hover:text-dbpink transition">Go Pro!</a></li>
+            <li><a href="#feed" class="hover:text-dbpink transition">Explore design work</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Design blog</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Playoffs</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Weekly Warm-up</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Code of conduct</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-ink mb-3 text-sm">Hire designers</h4>
+          <ul class="space-y-2 text-sm text-muted">
+            <li><a href="#hire" class="hover:text-dbpink transition">Post a job opening</a></li>
+            <li><a href="#hire" class="hover:text-dbpink transition">Post a freelance project</a></li>
+            <li><a href="#spotlights" class="hover:text-dbpink transition">Search for designers</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Partnerships</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-ink mb-3 text-sm">Company</h4>
+          <ul class="space-y-2 text-sm text-muted">
+            <li><a href="#" class="hover:text-dbpink transition">About</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Careers</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Support</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Media kit</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Testimonials</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">API</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-ink mb-3 text-sm">Directories</h4>
+          <ul class="space-y-2 text-sm text-muted">
+            <li><a href="#" class="hover:text-dbpink transition">Design jobs</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Freelance designers</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Tags</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Places</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Design assets</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-ink mb-3 text-sm">Resources</h4>
+          <ul class="space-y-2 text-sm text-muted">
+            <li><a href="#" class="hover:text-dbpink transition">Freelancing</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Design hiring</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Design portfolio</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Design education</a></li>
+            <li><a href="#" class="hover:text-dbpink transition">Creative process</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-line flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="16" fill="#ea4c89"/>
+            <path d="M16 1.5c5.4 4.9 8.2 12 8.2 19.7" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M4 11.6c6.5-2 13.3-.6 18.7 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M2.7 22.2c5.4-3.3 11.4-4.5 17.7-3.3 3.3.6 6.4 2 9.1 4.3" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          <div class="text-sm">
+            <div class="font-extrabold text-ink">dribbble</div>
+            <div class="text-faint text-xs">Where designers grow their careers.</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <!-- socials -->
+          <a href="#" aria-label="X" class="text-faint hover:text-ink transition"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" aria-label="Dribbble" class="text-faint hover:text-ink transition"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm9.885 11.441c-2.575-.422-4.943-.445-7.103-.073a42.153 42.153 0 0 0-.767-1.68c2.31-1 4.165-2.358 5.548-4.082a9.863 9.863 0 0 1 2.322 5.835zm-3.842-7.282c-1.205 1.554-2.868 2.783-4.986 3.68a46.287 46.287 0 0 0-3.276-5.116A9.812 9.812 0 0 1 12 2.152c2.183 0 4.197.654 5.876 1.777l-.833.13zM7.6 2.79a50.03 50.03 0 0 1 3.32 5.02c-2.83.755-6.03 1.14-9.58 1.14-.06 0-.124 0-.185-.003A9.867 9.867 0 0 1 7.6 2.79zM2.152 12c0-.13.003-.26.008-.39 3.982.02 7.546-.448 10.68-1.396.28.556.54 1.116.777 1.678-3.202.98-5.865 2.9-7.97 5.746A9.848 9.848 0 0 1 2.152 12zm4.128 6.775c1.9-2.7 4.328-4.508 7.276-5.42.98 2.615 1.71 5.293 2.184 8.02A9.83 9.83 0 0 1 12 21.848a9.836 9.836 0 0 1-5.72-3.073zm12.02.65c-.44-2.476-1.1-4.92-1.978-7.326 1.94-.303 4.06-.262 6.354.13a9.865 9.865 0 0 1-4.376 7.196z"/></svg></a>
+          <a href="#" aria-label="Instagram" class="text-faint hover:text-ink transition"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.242-1.308-3.608C2.175 15.586 2.163 15.206 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.568 5.782 2.296 7.15 2.234 8.416 2.176 8.796 2.163 12 2.163zm0 1.802c-3.148 0-3.51.012-4.712.068-.943.043-1.78.19-2.53.94-.75.75-.897 1.587-.94 2.53-.056 1.202-.068 1.564-.068 4.712s.012 3.51.068 4.712c.043.943.19 1.78.94 2.53.75.75 1.587.897 2.53.94 1.202.056 1.564.068 4.712.068s3.51-.012 4.712-.068c.943-.043 1.78-.19 2.53-.94.75-.75.897-1.587.94-2.53.056-1.202.068-1.564.068-4.712s-.012-3.51-.068-4.712c-.043-.943-.19-1.78-.94-2.53-.75-.75-1.587-.897-2.53-.94-1.202-.056-1.564-.068-4.712-.068zm0 3.063A5.033 5.033 0 1 1 12 17.03 5.033 5.033 0 0 1 12 6.97zm0 8.302A3.27 3.27 0 1 0 12 8.73a3.27 3.27 0 0 0 0 6.542zm6.536-8.48a1.18 1.18 0 1 1-2.36 0 1.18 1.18 0 0 1 2.36 0z"/></svg></a>
+          <a href="#" aria-label="YouTube" class="text-faint hover:text-ink transition"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+
+        <div class="text-xs text-faint flex items-center gap-4">
+          <span>© 2026 Dribbble. All rights reserved.</span>
+          <span class="hidden sm:inline">·</span>
+          <a href="#" class="hidden sm:inline hover:text-ink">Privacy</a>
+          <a href="#" class="hidden sm:inline hover:text-ink">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ SIGN UP / SIGN IN MODAL ============ -->
+  <div id="authModal" class="fixed inset-0 z-50 hidden">
+    <div onclick="closeModal()" class="absolute inset-0 bg-ink/50 backdrop-blur-sm"></div>
+    <div class="relative min-h-full flex items-center justify-center p-4">
+      <div class="relative w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 animate-pop">
+        <button onclick="closeModal()" class="absolute top-4 right-4 p-2 rounded-full text-faint hover:bg-wash hover:text-ink transition" aria-label="Close">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+
+        <div class="flex items-center gap-2 mb-6">
+          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="16" fill="#ea4c89"/>
+            <path d="M16 1.5c5.4 4.9 8.2 12 8.2 19.7" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M4 11.6c6.5-2 13.3-.6 18.7 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M2.7 22.2c5.4-3.3 11.4-4.5 17.7-3.3 3.3.6 6.4 2 9.1 4.3" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          <span class="text-2xl font-extrabold tracking-tight text-ink">dribbble</span>
+        </div>
+
+        <h3 id="modalTitle" class="text-2xl font-extrabold text-ink">Sign up to Dribbble</h3>
+        <p id="modalSub" class="text-muted text-sm mt-1">Share your work, get discovered, and get hired.</p>
+
+        <div class="mt-6 space-y-3">
+          <button onclick="socialAuth('Google')" class="w-full flex items-center justify-center gap-3 py-3 rounded-xl border border-line font-semibold text-sm hover:bg-wash transition">
+            <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            Continue with Google
+          </button>
+          <button onclick="socialAuth('X')" class="w-full flex items-center justify-center gap-3 py-3 rounded-xl bg-ink text-white font-semibold text-sm hover:bg-black transition">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Continue with X
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3 my-5">
+          <div class="flex-1 h-px bg-line"></div><span class="text-xs text-faint">or</span><div class="flex-1 h-px bg-line"></div>
+        </div>
+
+        <form onsubmit="emailAuth(event)" class="space-y-3">
+          <input type="email" required placeholder="Email address" class="w-full px-4 py-3 rounded-xl bg-wash border border-transparent focus:border-dbpink/40 focus:bg-white text-sm outline-none transition" />
+          <button type="submit" id="modalSubmit" class="w-full py-3 rounded-xl bg-dbpink text-white font-semibold text-sm hover:bg-dbpink-dark transition">Continue with email</button>
+        </form>
+
+        <p id="modalSwitch" class="text-center text-sm text-muted mt-5">
+          Already have an account? <button onclick="openModal('signin')" class="text-dbpink font-semibold hover:underline">Sign in</button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TOAST ============ -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] px-5 py-3 rounded-full bg-ink text-white text-sm font-medium shadow-2xl flex items-center gap-2 opacity-0 translate-y-4 pointer-events-none transition-all duration-300">
+    <svg class="w-4 h-4 text-dbpink-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    <span id="toastMsg">Done</span>
+  </div>
+
+  <script>
+    /* ==================== ICON SNIPPETS ==================== */
+    const ico = {
+      heart: (filled) => `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="${filled ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l8.84 8.84 8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+      eye: `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>`,
+      comment: `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
+      bookmark: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>`,
+    };
+
+    /* ==================== FALLBACK IMAGE GENERATORS ==================== */
+    function ph(seed) {
+      const c = ['#f7a7c6', '#8b5cf6', '#22d3ee', '#fbbf24', '#34d399', '#f472b6', '#60a5fa', '#a78bfa'];
+      const a = c[seed % c.length], b = c[(seed * 3 + 2) % c.length];
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='${a}'/><stop offset='1' stop-color='${b}'/></linearGradient></defs><rect width='600' height='600' fill='url(#g)'/><circle cx='460' cy='150' r='120' fill='rgba(255,255,255,.16)'/><circle cx='140' cy='470' r='90' fill='rgba(0,0,0,.10)'/></svg>`;
+      return 'data:image/svg+xml,' + encodeURIComponent(svg);
+    }
+    function av(el, initials) {
+      el.onerror = null;
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><rect width='80' height='80' fill='#e9e9ee'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Poppins,sans-serif' font-size='30' font-weight='600' fill='#8b8b96'>${initials}</text></svg>`;
+      el.src = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    }
+
+    /* ==================== DATA ==================== */
+    const IMGS = [
+      'photo-1618005182384-a83a8bd57fbe', 'photo-1620641788421-7a1c342ea42e', 'photo-1633887382542-6a9b5b7c99a6', 'photo-1558591710-4b4a1ae0f04d',
+      'photo-1614851099175-e5b30eb6f696', 'photo-1626785774573-4b799315345d', 'photo-1550684376-efcbd6e3f031', 'photo-1618556450994-a6a128ef0d99',
+      'photo-1579546929518-9e396f3cc809', 'photo-1550745165-9bc0b252726f', 'photo-1604076913837-52ab5629fba9', 'photo-1558655146-9f40138edfeb',
+      'photo-1541701494587-cb58502866ab', 'photo-1557672172-298e090bd0f1', 'photo-1620121692029-d088224ddc74', 'photo-1614850523459-c2dc4aba19c3',
+      'photo-1620503374956-c942862f0372', 'photo-1618172193763-c511deb635ca', 'photo-1518709268805-4e9042af9f23', 'photo-1557683316-973673baf926',
+      'photo-1557682250-33bd709cbe85', 'photo-1557682224-5b8590cd9ec5', 'photo-1620200423727-8127f75d7f53', 'photo-1557683311-eac922347aa1'
+    ].map(id => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=640&q=80`);
+
+    const AUTHORS = [
+      ['Sofia Rivera', 12], ['Kenji Tanaka', 33], ['Amara Osei', 5], ['Luca Bianchi', 47], ['Priya Nair', 20], ['Noah Becker', 60],
+      ['Yuki Sato', 24], ['Elena Petrova', 44], ['Marcus Cole', 51], ['Zara Ahmed', 9], ['Diego Torres', 13], ['Mia Chen', 31],
+      ['Omar Faruk', 55], ['Ines Dubois', 16], ['Tom Whitfield', 8], ['Aisha Khan', 28], ['Leo Martin', 36], ['Nina Rossi', 41],
+      ['Hana Kim', 19], ['Felix Braun', 3], ['Grace Lee', 26], ['Ravi Malhotra', 64]
+    ];
+
+    const TITLES = [
+      'Finance dashboard concept', 'Nova — SaaS landing page', 'Ride booking mobile app', 'Bloom — brand identity',
+      'Nebula 3D abstract series', 'Zenith portfolio website', 'Brew coffee packaging design', 'Aether — motion study',
+      'Pulse fitness tracker UI', 'Lumen smart home app', 'Verve sneaker campaign', 'Orbit space illustration',
+      'Grid editorial layout', 'Chroma color exploration', 'Flow — onboarding screens', 'Harbor travel app',
+      'Monolith 3D typography', 'Mint — plant care app', 'Crypto wallet interface', 'Solstice poster series',
+      'Atlas data visualization', 'Echo — music player UI', 'Prism — gradient system', 'Terra eco brand system'
+    ];
+    const TAGSETS = [
+      ['web', 'dashboard', 'ui'], ['web', 'landing page', 'ui'], ['mobile', 'app', 'ui'], ['branding', 'illustration', 'logo'],
+      ['3d', 'illustration', 'abstract'], ['web', 'portfolio', 'ui'], ['branding', 'packaging'], ['motion', 'animation', '3d'],
+      ['mobile', 'app', 'fitness'], ['mobile', 'app', 'iot'], ['branding', 'campaign'], ['illustration', 'space'],
+      ['editorial', 'print', 'typography'], ['illustration', 'gradient'], ['mobile', 'app', 'onboarding'], ['mobile', 'app', 'travel'],
+      ['3d', 'typography', 'abstract'], ['mobile', 'app', 'nature'], ['web', 'dashboard', 'crypto'], ['print', 'poster', 'typography'],
+      ['web', 'dataviz', 'ui'], ['mobile', 'app', 'music'], ['3d', 'gradient', 'abstract'], ['branding', 'identity', 'eco']
+    ];
+    const RATIOS = ['4/5', '1/1', '4/3', '3/4', '16/11', '4/5', '1/1', '4/3'];
+
+    const CATEGORIES = ['Web Design', 'Mobile', 'Illustration', 'Branding', '3D', 'Typography'];
+
+    function buildBase() {
+      return IMGS.map((img, i) => {
+        const [name, avatarImg] = AUTHORS[i % AUTHORS.length];
+        const likes = 40 + ((i * 137) % 900);
+        const views = 3000 + ((i * 2741) % 96000);
+        const comments = 1 + ((i * 7) % 38);
+        const rec = 1000 - i; // higher = newer
+        const isNew = i >= 16;
+        const isNoteworthy = i % 3 === 0;
+        return {
+          id: i + 1,
+          img,
+          title: TITLES[i % TITLES.length],
+          author: name,
+          handle: '@' + name.toLowerCase().replace(/\s+/g, ''),
+          avatar: `https://i.pravatar.cc/120?img=${avatarImg}`,
+          initials: name.split(' ').map(w => w[0]).join(''),
+          ratio: RATIOS[i % RATIOS.length],
+          likes, views, comments, rec, isNew, isNoteworthy,
+          pro: i % 5 === 0,
+          category: CATEGORIES[i % CATEGORIES.length],
+          tags: TAGSETS[i % TAGSETS.length],
+        };
+      });
+    }
+
+    let base = buildBase();
+    let extraCount = 0;
+
+    /* ==================== STATE ==================== */
+    let activeTab = 'popular';
+    let query = '';
+    let displayCount = 24;
+    const liked = new Set();
+    const followed = new Set();
+
+    /* ==================== HELPERS ==================== */
+    const fmt = n => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1) + 'k' : n;
+    const likeCount = s => s.likes + (liked.has(s.id) ? 1 : 0);
+
+    function currentShots() {
+      let list = base.slice();
+      // lazily append "more" shots
+      for (let i = 0; i < extraCount; i++) {
+        const src = base[i % base.length];
+        list.push({
+          ...src,
+          id: 1000 + i,
+          img: IMGS[(i * 5 + 3) % IMGS.length],
+          title: TITLES[(i * 3 + 5) % TITLES.length],
+          tags: TAGSETS[(i * 2 + 1) % TAGSETS.length],
+          likes: 30 + ((i * 91) % 500),
+          views: 2500 + ((i * 311) % 70000),
+          comments: (i * 3) % 30,
+          rec: 500 - i,
+          isNew: i % 2 === 0,
+          isNoteworthy: i % 4 === 0,
         });
+      }
+      // query filter
+      if (query) {
+        const q = query.toLowerCase();
+        list = list.filter(s => (s.title + ' ' + s.author + ' ' + s.category + ' ' + s.tags.join(' ')).toLowerCase().includes(q));
+      }
+      // tab filter/sort
+      if (activeTab === 'popular') list.sort((a, b) => likeCount(b) - likeCount(a));
+      else if (activeTab === 'fresh') { list = list.filter(s => s.isNew); list.sort((a, b) => b.rec - a.rec); }
+      else if (activeTab === 'noteworthy') { list = list.filter(s => s.isNoteworthy || s.isNew); list.sort((a, b) => b.rec - a.rec); }
+      return list;
+    }
 
-        // Tab Switching Logic
-        function switchTab(tab) {
-            const storeView = document.getElementById('storeView');
-            const sellerView = document.getElementById('sellerView');
-            const storeBtn = document.getElementById('navStoreBtn');
-            const sellerBtn = document.getElementById('navSellerBtn');
+    /* ==================== RENDER ==================== */
+    function shotCard(s, idx) {
+      const isLiked = liked.has(s.id);
+      return `
+      <article class="group mb-6 break-inside-avoid animate-fadeUp" style="animation-delay:${Math.min(idx * 30, 400)}ms">
+        <div class="relative rounded-2xl overflow-hidden bg-wash ring-1 ring-line/70">
+          <div class="relative w-full" style="aspect-ratio:${s.ratio}">
+            <img src="${s.img}" alt="${s.title}" loading="lazy"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+              onerror="this.onerror=null;this.src='${ph(s.id)}'" />
 
-            if (tab === 'store') {
-                storeView.classList.remove('hidden');
-                sellerView.classList.add('hidden');
-                storeBtn.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-cyan-500/10 text-cyan-400 border border-cyan-500/30";
-                sellerBtn.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-slate-900/80 text-slate-300 border border-white/10 hover:border-white/20 hover:text-white";
-            } else {
-                storeView.classList.add('hidden');
-                sellerView.classList.remove('hidden');
-                sellerBtn.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-yellow-400/10 text-yellow-400 border border-yellow-400/30";
-                storeBtn.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-slate-900/80 text-slate-300 border border-white/10 hover:border-white/20 hover:text-white";
-                renderSellerProducts();
-            }
-            lucide.createIcons();
-        }
-
-        // Render Categories
-        function renderCategories() {
-            const container = document.getElementById('categoryContainer');
-            container.innerHTML = categories.map(cat => {
-                const isActive = activeCategory === cat;
-                return `
-                    <button onclick="filterCategory('${cat}')" class="px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-2 ${isActive ? 'bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20' : 'bg-slate-900/90 text-slate-300 border border-white/10 hover:bg-slate-800'}">
-                        <span>${cat}</span>
-                    </button>
-                `;
-            }).join('');
-        }
-
-        function filterCategory(cat) {
-            activeCategory = cat;
-            renderCategories();
-            renderProducts();
-        }
-
-        function handleSearch(query) {
-            searchQuery = query.toLowerCase().trim();
-            renderProducts();
-        }
-
-        // Render Products Catalog
-        function renderProducts() {
-            const grid = document.getElementById('productGrid');
-            const countLabel = document.getElementById('productCountLabel');
-
-            let filtered = products.filter(p => {
-                const matchesCat = activeCategory === 'All' || p.category === activeCategory;
-                const matchesSearch = p.name.toLowerCase().includes(searchQuery) || p.category.toLowerCase().includes(searchQuery);
-                return matchesCat && matchesSearch;
-            });
-
-            countLabel.innerText = `Showing ${filtered.length} item(s)`;
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full py-16 text-center space-y-3">
-                        <div class="w-12 h-12 mx-auto rounded-full bg-slate-900 flex items-center justify-center text-slate-500">
-                            <i data-lucide="search-x" class="w-6 h-6"></i>
-                        </div>
-                        <p class="text-slate-400 text-sm font-medium">No products found matching your criteria.</p>
-                    </div>
-                `;
-                lucide.createIcons();
-                return;
-            }
-
-            grid.innerHTML = filtered.map(p => {
-                const qty = cart[p.id] || 0;
-                const discount = p.mrp ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
-
-                return `
-                    <div class="group relative glass-panel rounded-2xl p-3.5 flex flex-col justify-between border border-white/10 hover:border-cyan-500/40 transition-all duration-300 hover:glow-effect">
-                        <div>
-                            <!-- Top Badges -->
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="px-2 py-0.5 rounded-md bg-slate-900/90 text-[10px] font-bold text-cyan-400 border border-white/10 flex items-center gap-1">
-                                    <i data-lucide="zap" class="w-3 h-3 text-yellow-400"></i> ${p.eta}
-                                </span>
-                                ${discount > 0 ? `<span class="px-1.5 py-0.5 rounded bg-pink-500/10 text-pink-400 text-[10px] font-extrabold border border-pink-500/20">${discount}% OFF</span>` : ''}
-                            </div>
-
-                            <!-- Image Container -->
-                            <div class="relative w-full h-32 rounded-xl bg-slate-900 overflow-hidden mb-3 flex items-center justify-center">
-                                <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/300x300/13151f/22d3ee?text=Quick+Item'">
-                            </div>
-
-                            <!-- Title & Category -->
-                            <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold">${p.category}</span>
-                            <h3 class="font-bold text-sm text-white line-clamp-2 mt-0.5 mb-2 group-hover:text-cyan-300 transition-colors">${p.name}</h3>
-                        </div>
-
-                        <div>
-                            <!-- Price & Add Button -->
-                            <div class="flex items-center justify-between mt-2 pt-2 border-t border-white/5">
-                                <div>
-                                    <span class="text-base font-extrabold text-white">₹${p.price}</span>
-                                    ${p.mrp && p.mrp > p.price ? `<span class="block text-[11px] text-slate-500 line-through">₹${p.mrp}</span>` : ''}
-                                </div>
-
-                                <div>
-                                    ${qty === 0 ? `
-                                        <button onclick="updateCart(${p.id}, 1)" class="px-3.5 py-1.5 rounded-xl bg-cyan-500/10 text-cyan-400 font-bold text-xs border border-cyan-500/30 hover:bg-cyan-500 hover:text-slate-950 transition-all">
-                                            ADD
-                                        </button>
-                                    ` : `
-                                        <div class="flex items-center gap-2 bg-cyan-500 text-slate-950 rounded-xl px-2 py-1 font-bold text-xs shadow-md">
-                                            <button onclick="updateCart(${p.id}, -1)" class="w-5 h-5 flex items-center justify-center rounded-lg bg-black/10 hover:bg-black/20">-</button>
-                                            <span>${qty}</span>
-                                            <button onclick="updateCart(${p.id}, 1)" class="w-5 h-5 flex items-center justify-center rounded-lg bg-black/10 hover:bg-black/20">+</button>
-                                        </div>
-                                    `}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            lucide.createIcons();
-        }
-
-        // Cart Management Functions
-        function updateCart(productId, delta) {
-            if (!cart[productId]) cart[productId] = 0;
-            cart[productId] += delta;
-            if (cart[productId] <= 0) {
-                delete cart[productId];
-            }
-            renderProducts();
-            renderCartItems();
-            updateCartBadge();
-        }
-
-        function updateCartBadge() {
-            const totalCount = Object.values(cart).reduce((a, b) => a + b, 0);
-            const badge = document.getElementById('cartCountBadge');
-            badge.innerText = totalCount;
-            if (totalCount > 0) {
-                badge.classList.remove('scale-0');
-            } else {
-                badge.classList.add('scale-0');
-            }
-        }
-
-        function toggleCartDrawer(open) {
-            const drawer = document.getElementById('cartDrawer');
-            const overlay = document.getElementById('cartOverlay');
-            if (open) {
-                overlay.classList.remove('hidden');
-                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
-                drawer.classList.remove('translate-x-full');
-                renderCartItems();
-            } else {
-                drawer.classList.add('translate-x-full');
-                overlay.classList.add('opacity-0');
-                setTimeout(() => overlay.classList.add('hidden'), 300);
-            }
-        }
-
-        function renderCartItems() {
-            const container = document.getElementById('cartItemsContainer');
-            const productIds = Object.keys(cart);
-
-            if (productIds.length === 0) {
-                container.innerHTML = `
-                    <div class="py-16 text-center space-y-3">
-                        <div class="w-12 h-12 mx-auto rounded-full bg-slate-900 flex items-center justify-center text-slate-500">
-                            <i data-lucide="shopping-bag" class="w-6 h-6"></i>
-                        </div>
-                        <p class="text-slate-400 text-sm font-medium">Your cart is currently empty.</p>
-                        <button onclick="toggleCartDrawer(false)" class="text-xs text-cyan-400 font-bold hover:underline">Start shopping →</button>
-                    </div>
-                `;
-                document.getElementById('cartSubtotal').innerText = '₹0';
-                document.getElementById('cartGrandTotal').innerText = '₹4';
-                lucide.createIcons();
-                return;
-            }
-
-            let subtotal = 0;
-            container.innerHTML = productIds.map(id => {
-                const p = products.find(item => item.id == id);
-                const qty = cart[id];
-                if (!p) return '';
-                subtotal += p.price * qty;
-
-                return `
-                    <div class="flex items-center justify-between py-3">
-                        <div class="flex items-center gap-3">
-                            <img src="${p.image}" class="w-12 h-12 rounded-xl object-cover bg-slate-900 border border-white/10" onerror="this.src='https://placehold.co/100x100'">
-                            <div>
-                                <h4 class="font-bold text-xs text-white line-clamp-1">${p.name}</h4>
-                                <span class="text-xs text-cyan-400 font-semibold">₹${p.price} x ${qty}</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2 bg-slate-900 rounded-xl p-1 border border-white/10">
-                            <button onclick="updateCart(${p.id}, -1)" class="w-6 h-6 rounded-lg bg-slate-800 text-white flex items-center justify-center text-xs font-bold">-</button>
-                            <span class="text-xs font-bold text-white px-1">${qty}</span>
-                            <button onclick="updateCart(${p.id}, 1)" class="w-6 h-6 rounded-lg bg-slate-800 text-white flex items-center justify-center text-xs font-bold">+</button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            const grandTotal = subtotal > 0 ? subtotal + 4 : 0;
-            document.getElementById('cartSubtotal').innerText = `₹${subtotal}`;
-            document.getElementById('cartGrandTotal').innerText = `₹${grandTotal}`;
-            lucide.createIcons();
-        }
-
-        function checkoutOrder() {
-            if (Object.keys(cart).length === 0) {
-                showToast("Your cart is empty!");
-                return;
-            }
-            showToast("⚡ Order placed successfully! Delivering in 11 mins.");
-            cart = {};
-            updateCartBadge();
-            toggleCartDrawer(false);
-            renderProducts();
-        }
-
-        // Seller Portal Functions
-        function fillPreset(type) {
-            if (type === 'milk') {
-                document.getElementById('pName').value = "Organic Farm Fresh Cow Milk 1L";
-                document.getElementById('pCategory').value = "Groceries";
-                document.getElementById('pPrice').value = "64";
-                document.getElementById('pMrp').value = "70";
-                document.getElementById('pEta').value = "11 mins";
-                document.getElementById('pStock').value = "100";
-                document.getElementById('pImage').value = "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=500&q=80";
-            } else if (type === 'chips') {
-                document.getElementById('pName').value = "Kurkure Masala Munch 90g";
-                document.getElementById('pCategory').value = "Snacks";
-                document.getElementById('pPrice').value = "20";
-                document.getElementById('pMrp').value = "20";
-                document.getElementById('pEta').value = "10 mins";
-                document.getElementById('pStock').value = "75";
-                document.getElementById('pImage').value = "https://images.unsplash.com/photo-1621408630716-d626359fefc4?w=500&q=80";
-            } else if (type === 'charger') {
-                document.getElementById('pName').value = "65W Ultra Fast USB-C Wall Charger";
-                document.getElementById('pCategory').value = "Electronics";
-                document.getElementById('pPrice').value = "599";
-                document.getElementById('pMrp').value = "1299";
-                document.getElementById('pEta').value = "15 mins";
-                document.getElementById('pStock').value = "30";
-                document.getElementById('pImage').value = "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&q=80";
-            }
-        }
-
-        function handleProductListing(event) {
-            event.preventDefault();
-
-            const newProduct = {
-                id: Date.now(),
-                name: document.getElementById('pName').value,
-                category: document.getElementById('pCategory').value,
-                price: Number(document.getElementById('pPrice').value),
-                mrp: Number(document.getElementById('pMrp').value) || Number(document.getElementById('pPrice').value),
-                eta: document.getElementById('pEta').value || "11 mins",
-                stock: Number(document.getElementById('pStock').value),
-                image: document.getElementById('pImage').value
-            };
-
-            products.unshift(newProduct);
-            renderProducts();
-            renderSellerProducts();
-            document.getElementById('sellerForm').reset();
-            
-            showToast("🚀 Product successfully published to live catalog!");
-            switchTab('store');
-        }
-
-        function renderSellerProducts() {
-            const listContainer = document.getElementById('sellerProductsList');
-            const countBadge = document.getElementById('sellerItemCount');
-
-            countBadge.innerText = `${products.length} Items Listed`;
-            
-            listContainer.innerHTML = products.map(p => `
-                py-3 flex items-center justify-between text-sm">
-                    <div class="flex items-center gap-3">
-                        <img src="${p.image}" class="w-10 h-10 rounded-xl object-cover bg-slate-900 border border-white/10" onerror="this.src='https://placehold.co/100x100'">
-                        <div>
-                            <h4 class="font-bold text-white text-xs">${p.name}</h4>
-                            <span class="text-[11px] text-slate-400">Cat: ${p.category} | Stock: ${p.stock}</span>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <span class="font-extrabold text-cyan-400 text-xs">₹${p.price}</span>
-                        <span class="block text-[10px] text-slate-500">${p.eta}</span>
-                    </div>
+            <!-- hover overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3">
+              <div class="flex items-start justify-between">
+                <span class="text-[10px] font-semibold uppercase tracking-wide text-white bg-white/20 backdrop-blur px-2 py-1 rounded-full">${s.category}</span>
+                <div class="flex gap-1.5">
+                  <button onclick="toggleLike(${s.id})" class="w-8 h-8 grid place-items-center rounded-full bg-white text-ink hover:bg-dbpink hover:text-white transition ${isLiked ? 'text-dbpink' : ''}">
+                    ${ico.heart(isLiked)}
+                  </button>
+                  <button onclick="showToast('Saved to your collection')" class="w-8 h-8 grid place-items-center rounded-full bg-white text-ink hover:bg-dbpink hover:text-white transition">
+                    ${ico.bookmark}
+                  </button>
                 </div>
-            `).join('');
-        }
+              </div>
+              <div>
+                <h3 class="text-white font-semibold text-sm leading-snug line-clamp-2">${s.title}</h3>
+                <p class="text-white/70 text-[11px] mt-0.5">by ${s.author} ${s.pro ? '· <span class="text-dbpink-light font-semibold">Pro</span>' : ''}</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMsg').innerText = msg;
-            toast.classList.remove('opacity-0', 'pointer-events-none');
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'pointer-events-none');
-            }, 3500);
-        }
-    </script>
+        <!-- meta -->
+        <div class="flex items-center justify-between gap-2 mt-2.5 px-0.5">
+          <a href="#" class="flex items-center gap-2 min-w-0 group/au">
+            <img src="${s.avatar}" onerror="av(this,'${s.initials}')" class="w-7 h-7 rounded-full object-cover ring-1 ring-line" alt="${s.author}" />
+            <span class="text-xs font-semibold text-ink truncate group-hover/au:text-dbpink transition">${s.author}</span>
+          </a>
+          <div class="flex items-center gap-3 text-muted shrink-0">
+            <span class="flex items-center gap-1 text-[11px] font-medium">${ico.comment}${s.comments}</span>
+            <button onclick="toggleLike(${s.id})" data-like-btn="${s.id}" class="flex items-center gap-1 text-[11px] font-medium transition ${isLiked ? 'text-dbpink' : 'hover:text-dbpink'}">
+              ${ico.heart(isLiked)}<span data-like-count="${s.id}">${likeCount(s)}</span>
+            </button>
+            <span class="flex items-center gap-1 text-[11px] font-medium">${ico.eye}${fmt(s.views)}</span>
+          </div>
+        </div>
+      </article>`;
+    }
+
+    function render() {
+      const list = currentShots();
+      const grid = document.getElementById('shotGrid');
+      const shown = list.slice(0, displayCount);
+
+      document.getElementById('resultCount').textContent = list.length ? `${shown.length} of ${list.length} shots` : '';
+      document.getElementById('emptyState').classList.toggle('hidden', list.length > 0);
+      document.getElementById('loadMoreWrap').classList.toggle('hidden', list.length === 0 || shown.length >= list.length);
+
+      grid.innerHTML = shown.map(shotCard).join('');
+
+      // tab styling
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        const active = btn.dataset.tab === activeTab;
+        btn.className = 'tab-btn px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition ' +
+          (active ? 'bg-ink text-white' : 'text-muted hover:bg-wash');
+      });
+
+      // search indicator
+      const si = document.getElementById('searchIndicator');
+      si.classList.toggle('hidden', !query);
+      if (query) document.getElementById('searchTerm').textContent = `“${query}”`;
+    }
+
+    /* ==================== DESIGNER RAIL ==================== */
+    function renderDesigners() {
+      const rail = document.getElementById('designerRail');
+      rail.innerHTML = AUTHORS.slice(0, 12).map(([name, img], i) => {
+        const f = 800 + ((i * 431) % 12000);
+        const isFollowing = followed.has(name);
+        return `
+        <div class="snap-start shrink-0 w-64 bg-white rounded-2xl ring-1 ring-line p-5 text-center hover:shadow-soft transition">
+          <img src="https://i.pravatar.cc/160?img=${img}" onerror="av(this,'${name.split(' ').map(w => w[0]).join('')}')" class="w-16 h-16 rounded-full mx-auto object-cover ring-2 ring-dbpink/20" alt="${name}" />
+          <h3 class="mt-3 font-bold text-ink text-sm">${name}</h3>
+          <p class="text-xs text-faint">@${name.toLowerCase().replace(/\s+/g, '')}</p>
+          <p class="text-[11px] text-muted mt-2 line-clamp-1">${['UI/UX & Product','3D & Motion','Brand & Identity','Illustration','Web Design'][i % 5]}</p>
+          <p class="text-[11px] text-faint mt-1">${fmt(f)} followers</p>
+          <button onclick="toggleFollow(this, '${name}')" class="mt-3 w-full py-2 rounded-full text-sm font-semibold transition ${isFollowing ? 'bg-wash text-ink' : 'bg-dbpink text-white hover:bg-dbpink-dark'}">
+            ${isFollowing ? 'Following' : 'Follow'}
+          </button>
+        </div>`;
+      }).join('');
+    }
+
+    /* ==================== INTERACTIONS ==================== */
+    function toggleLike(id) {
+      liked.has(id) ? liked.delete(id) : liked.add(id);
+      const s = currentShots().find(x => x.id === id) || base.find(x => x.id === id);
+      const count = s ? likeCount(s) : 0;
+      document.querySelectorAll(`[data-like-count="${id}"]`).forEach(el => el.textContent = count);
+      document.querySelectorAll(`[data-like-btn="${id}"]`).forEach(el => {
+        const filled = liked.has(id);
+        el.classList.toggle('text-dbpink', filled);
+        el.classList.toggle('hover:text-dbpink', !filled);
+        el.innerHTML = ico.heart(filled) + `<span data-like-count="${id}">${count}</span>`;
+      });
+    }
+
+    function toggleFollow(btn, name) {
+      if (followed.has(name)) { followed.delete(name); btn.textContent = 'Follow'; btn.className = 'mt-3 w-full py-2 rounded-full text-sm font-semibold transition bg-dbpink text-white hover:bg-dbpink-dark'; }
+      else { followed.add(name); btn.textContent = 'Following'; btn.className = 'mt-3 w-full py-2 rounded-full text-sm font-semibold transition bg-wash text-ink'; showToast(`Following ${name}`); }
+    }
+
+    function setTab(tab) {
+      activeTab = tab;
+      displayCount = 24;
+      render();
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => setTab(btn.dataset.tab)));
+
+    function doSearch(term) {
+      query = term.trim().toLowerCase();
+      activeTab = 'popular';
+      displayCount = 24;
+      render();
+      document.getElementById('feed').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function searchTag(tag) { document.getElementById('heroSearch').value = tag; document.getElementById('navSearch').value = tag; doSearch(tag); }
+    function runHeroSearch() { doSearch(document.getElementById('heroSearch').value); }
+    function clearSearch() {
+      query = '';
+      document.getElementById('heroSearch').value = '';
+      document.getElementById('navSearch').value = '';
+      render();
+    }
+
+    function loadMore() {
+      if (displayCount < base.length + extraCount) { displayCount += 8; render(); return; }
+      extraCount += 8; displayCount = base.length + extraCount; render();
+    }
+
+    // nav search (debounced-ish)
+    let searchTimer;
+    function bindNavSearch(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('input', e => {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => { query = e.target.value.trim().toLowerCase(); activeTab = 'popular'; displayCount = 24; render(); }, 250);
+      });
+      el.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(e.target.value); });
+    }
+    bindNavSearch('navSearch');
+    bindNavSearch('navSearchMobile');
+
+    document.getElementById('heroSearch').addEventListener('keydown', e => { if (e.key === 'Enter') runHeroSearch(); });
+
+    /* ==================== MOBILE MENU ==================== */
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    }
+
+    /* ==================== MODAL ==================== */
+    function openModal(mode) {
+      const m = document.getElementById('authModal');
+      const title = document.getElementById('modalTitle');
+      const sub = document.getElementById('modalSub');
+      const submit = document.getElementById('modalSubmit');
+      const sw = document.getElementById('modalSwitch');
+      m.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      if (mode === 'signin') {
+        title.textContent = 'Sign in to Dribbble';
+        sub.textContent = 'Welcome back. Let’s get you inspired.';
+        submit.textContent = 'Sign in with email';
+        sw.innerHTML = 'New to Dribbble? <button onclick="openModal(\'signup\')" class="text-dbpink font-semibold hover:underline">Create an account</button>';
+      } else {
+        title.textContent = 'Sign up to Dribbble';
+        sub.textContent = 'Share your work, get discovered, and get hired.';
+        submit.textContent = 'Continue with email';
+        sw.innerHTML = 'Already have an account? <button onclick="openModal(\'signin\')" class="text-dbpink font-semibold hover:underline">Sign in</button>';
+      }
+    }
+    function closeModal() {
+      document.getElementById('authModal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+    function socialAuth(provider) { showToast(`Connecting with ${provider}…`); }
+    function emailAuth(e) { e.preventDefault(); showToast('Check your inbox to continue'); closeModal(); }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    /* ==================== TOAST ==================== */
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      t.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none'), 2600);
+    }
+
+    /* ==================== RAIL SCROLL ==================== */
+    function scrollRail(dir) {
+      document.getElementById('designerRail').scrollBy({ left: dir * 280, behavior: 'smooth' });
+    }
+
+    /* ==================== HEADER SHADOW ON SCROLL ==================== */
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('shadow-soft', window.scrollY > 8);
+    });
+
+    /* ==================== INIT ==================== */
+    render();
+    renderDesigners();
+  </script>
 </body>
 </html>
